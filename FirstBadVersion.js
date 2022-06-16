@@ -7,6 +7,9 @@
  *     ...
  * };
  */
+const isBadVersion = function (version) {
+    return version >= 4;
+};
 
 /**
  * @param {function} isBadVersion()
@@ -21,20 +24,22 @@ var solution = function (isBadVersion) {
 
     return function (n) {
         let start = 0;
-        let end = n-1;
-        while(start < end) {
-            let mid = Math.floor((end - start)/2);
-            if(isBadVersion(mid)) end = mid;
+        let end = n - 1;
+        while (start < end) {
+            let mid = Math.floor((end - start) / 2);
+            if (isBadVersion(mid)) end = mid;
             else start = mid + 1;
         }
         return start;
     };
-    
+
 };
 
 n = 5, bad = 4
-solution(n)
+// solution(n)
 
+let res = solution(isBadVersion)
+console.log(res(n));
 /*
 
 s
