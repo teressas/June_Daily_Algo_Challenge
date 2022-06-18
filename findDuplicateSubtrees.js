@@ -17,42 +17,30 @@ function TreeNode(val, left, right) {
 }
 
 var findDuplicateSubtrees = function(root) {
-    // const result = [],
-    // map = new Map();
-    // // traverse using post order to get left nodes first
-    // let postOrder = (node) => {
+    const result = [],
+    map = new Map();
+    // traverse using post order to get left nodes first
+    let postOrder = (node) => {
     
-    //     // at anytime the node is null return blank
-    //     if(!node) return '';
+        // at anytime the node is null return blank
+        if(!node) return '';
         
-    //     // add the current node val and the node's parent as the key in the map
-    //     const key = node.val + "." + postOrder(node.left) + "." + postOrder(node.right),
-    //     // add the val as 0 if it doesn't exist in the map otherwise add 1
-    //         val = (map.get(key) || 0) + 1;
-	// 	// if the val is 2 then we found a duplicate, push into the return arr
-    //     if(val == 2) result.push(node);
+        // add the current node val and the node's parent as the key in the map
+        const key = node.val + "." + postOrder(node.left) + "." + postOrder(node.right),
+        // add the val as 0 if it doesn't exist in the map otherwise add 1
+            val = (map.get(key) || 0) + 1;
+		// if the val is 2 then we found a duplicate, push into the return arr
+        if(val == 2) result.push(node);
         
-	// 	// if the val is less than 3, add the key and val to the map
-    //     if(val < 3) map.set(key,val);
+		// if the val is less than 3, add the key and val to the map
+        if(val < 3) map.set(key,val);
     
-    //     console.log("map",map,"result",result)
-    //     return key
-    // }
-    // postOrder(root);
-    // return result;
+        console.log("map",map,"result",result)
+        return key
+    }
+    postOrder(root);
+    return result;
 
-    const map = new Map(),
-		res = [];
-	const dfs = (node) => {
-		if (!node) return '';
-		const key = node.val + "." + dfs(node.left) + "." + dfs(node.right),
-			value = (map.get(key) || 0) + 1;
-		if (value == 2) res.push(node);
-		if (value < 3) map.set(key, value);
-		return key;
-	};
-	dfs(root);
-	return res;
 };
 
 root = [1,2,3,4,null,2,4,null,null,4] // [[2,4],[4]]
