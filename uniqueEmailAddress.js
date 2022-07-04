@@ -49,8 +49,8 @@ var numUniqueEmails = function (emails) {
         // use a helper funct to return the email address based on the rules and add it to the set
         const address = correctAddress(email);
         set.add(address);
-        // console.log(set)
     }
+    // console.log(set)
     return set.size;
     // return the size of the set at the end of loop
     
